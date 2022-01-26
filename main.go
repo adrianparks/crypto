@@ -19,7 +19,7 @@ func returnMD5Hash(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Submitted plaintext: %+v\n", string(reqBody))
 
 	h := md5.Sum([]byte(reqBody))
-	fmt.Fprintf(w, "%x\n", string(h[:]))
+	fmt.Fprintf(w, "MD5 hash: %x\n", string(h[:]))
 }
 
 func returnSHA1Hash(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +30,7 @@ func returnSHA1Hash(w http.ResponseWriter, r *http.Request) {
 	h := sha1.New()
 	h.Write([]byte(reqBody))
 	text := h.Sum(nil)
-	fmt.Fprintf(w, "%x\n", text)
+	fmt.Fprintf(w, "SHA-1 hash: %x\n", text)
 }
 
 func returnSHA256Hash(w http.ResponseWriter, r *http.Request) {
@@ -42,7 +42,7 @@ func returnSHA256Hash(w http.ResponseWriter, r *http.Request) {
 	h.Write([]byte(reqBody))
 	text := h.Sum(nil)
 	//	json.NewEncoder(w).Encode(fmt.Sprintf("%x", text))
-	fmt.Fprintf(w, "%x\n", text)
+	fmt.Fprintf(w, "SHA-256 hash: %x\n", text)
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
