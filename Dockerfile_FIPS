@@ -9,7 +9,7 @@ RUN go mod download
 COPY *.go ./
 COPY start.sh ./
 
-RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=1 GO111MODULE=on go build --ldflags='-extldflags=-static' -o ./hashapi
+RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build -o ./hashapi
 
 EXPOSE 9000
 

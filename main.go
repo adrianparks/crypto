@@ -5,7 +5,7 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -15,7 +15,7 @@ import (
 
 func returnMD5Hash(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Endpoint Hit: md5")
-	reqBody, _ := ioutil.ReadAll(r.Body)
+	reqBody, _ := io.ReadAll(r.Body)
 	fmt.Fprintf(w, "Submitted plaintext: %+v\n", string(reqBody))
 
 	h := md5.Sum([]byte(reqBody))
@@ -24,7 +24,7 @@ func returnMD5Hash(w http.ResponseWriter, r *http.Request) {
 
 func returnSHA1Hash(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Endpoint Hit: sha1")
-	reqBody, _ := ioutil.ReadAll(r.Body)
+	reqBody, _ := io.ReadAll(r.Body)
 	fmt.Fprintf(w, "Submitted plaintext: %+v\n", string(reqBody))
 
 	h := sha1.New()
@@ -35,7 +35,7 @@ func returnSHA1Hash(w http.ResponseWriter, r *http.Request) {
 
 func returnSHA256Hash(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Endpoint Hit: sha256")
-	reqBody, _ := ioutil.ReadAll(r.Body)
+	reqBody, _ := io.ReadAll(r.Body)
 	fmt.Fprintf(w, "Submitted plaintext: %+v\n", string(reqBody))
 
 	h := sha256.New()
